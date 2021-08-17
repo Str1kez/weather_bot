@@ -16,6 +16,27 @@ def get_weather(city: str):
     return put_weather(req)
 
 
+def get_emoji(name: str):
+    emoji_dict = {
+        'Clouds': '☁️',
+        'Haze': '🌫',
+        'Clear': '☀️',
+        'Rain': '🌧',
+        'Snow': '❄️',
+        'Drizzle': '🌦',
+        'Thunderstorm': '⚡️',
+        'Mist': '🌫',
+        'Smoke': '💨',
+        'Dust': '🌪',
+        'Fog': '🌫',
+        'Sand': '🌪',
+        'Ash': '🌫',
+        'Squall': '🌪',
+        'Tornado': '🌪'
+    }
+    return emoji_dict.get(name, '')
+
+
 def put_weather(status: dict):
     time = dt.fromtimestamp(status['dt'] + status['timezone'] - 10800)
     time = time.time()
@@ -25,5 +46,5 @@ def put_weather(status: dict):
     city_info = "В городе {} сейчас {} часов.".format(status['name'], time.isoformat(timespec='minutes'))
     weather_info = "На улице {} °C, ощущается как {} °C".format(temp, temp_feels)
     wind_info = "Скорость ветра {} м/сек".format(status['wind']['speed'])
-    state_info = state.capitalize()
+    state_info = state.capitalize() + ' ' + get_emoji(status['weather'][0]['main'])
     return "\n".join((city_info, weather_info, wind_info, state_info))
