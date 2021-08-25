@@ -5,7 +5,7 @@ from loader import dp
 
 
 # Эхо хендлер, куда летят текстовые сообщения без указанного состояния
-@dp.message_handler(state=None)
+@dp.message_handler()
 async def bot_weather(message: types.Message):
     await message.answer(get_weather(message.text))
 

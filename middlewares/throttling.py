@@ -1,7 +1,4 @@
-import asyncio
-
 from aiogram import types, Dispatcher
-from aiogram.dispatcher import DEFAULT_RATE_LIMIT
 from aiogram.dispatcher.handler import CancelHandler, current_handler
 from aiogram.dispatcher.middlewares import BaseMiddleware
 from aiogram.utils.exceptions import Throttled
@@ -10,9 +7,11 @@ from aiogram.utils.exceptions import Throttled
 class ThrottlingMiddleware(BaseMiddleware):
     """
     Simple middleware
+    если нужен уникальный лимит для функции - вызывается декоратор,
+    который объекту хендлера присваевает атрибуты лимита и префикса
     """
 
-    def __init__(self, limit=DEFAULT_RATE_LIMIT, key_prefix='antiflood_'):
+    def __init__(self, limit=2, key_prefix='antiflood_'):
         self.rate_limit = limit
         self.prefix = key_prefix
         super(ThrottlingMiddleware, self).__init__()
@@ -33,5 +32,5 @@ class ThrottlingMiddleware(BaseMiddleware):
             raise CancelHandler()
 
     async def message_throttled(self, message: types.Message, throttled: Throttled):
-        if throttled.exceeded_count <= 2:
-            await message.reply("Too many requests!")
+        if throttled.exceeded_count >= 2:
+            await message.reply("Слишком много запросов 🤨")
