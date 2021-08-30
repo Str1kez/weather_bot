@@ -7,6 +7,7 @@ async def set_default_commands(dp):
         types.BotCommand("help", "Вывести справку"),
         types.BotCommand("send_contact", "Отправить данные (просто вывод трех сообщений 😎"),
         types.BotCommand('menu', 'Показать меню'),
-        types.BotCommand('close_menu', 'Убрать меню')
+        types.BotCommand('close_menu', 'Убрать меню'),
+        types.BotCommand('get_shops', 'Вывести ссылки на магазы со шмотом')
     ]
     await dp.bot.set_my_commands(commands)

@@ -2,4 +2,4 @@
 /.idea/
 .env
 */__pycache__/
-*.cpython-39.pyc
+*.cpython*
