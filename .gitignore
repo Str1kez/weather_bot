@@ -1,6 +1,7 @@
 /venv/
 /.idea/
 .env
+/.venv/
 */__pycache__/
 *.cpython*
 /.vscode/

@@ -1,4 +1,4 @@
-from .misc import logging
+from .misc.logging import logging
 from aiogram import Dispatcher
 from data.config import ADMINS
 

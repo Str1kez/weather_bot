@@ -2,7 +2,7 @@ from aiogram import types
 
 
 async def set_default_commands(dp):
-    commands = [
+    commands_user = [
         types.BotCommand("start", "Запустить бота"),
         types.BotCommand("help", "Вывести справку"),
         types.BotCommand("send_contact", "Отправить данные (просто вывод трех сообщений 😎"),
@@ -10,4 +10,9 @@ async def set_default_commands(dp):
         types.BotCommand('close_menu', 'Убрать меню'),
         types.BotCommand('get_shops', 'Вывести ссылки на магазы со шмотом')
     ]
-    await dp.bot.set_my_commands(commands)
+    commands_group = [
+        types.BotCommand("start", "Запустить бота"),
+        types.BotCommand("help", "Вывести справку"),
+        types.BotCommand('weather', 'Ответь на название города')
+    ]
+    await dp.bot.set_my_commands(commands_group)
