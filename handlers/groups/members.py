@@ -13,6 +13,7 @@ async def new_member_notification(message: types.Message):
 @dp.message_handler(IsGroup(), content_types=types.ContentTypes.LEFT_CHAT_MEMBER)
 async def left_member_notification(message: types.Message):
     if message.left_chat_member.id == message.from_user.id:
-        await message.answer('Ну и уходи, ', message.left_chat_member.get_mention())
+        await message.answer('Ну и уходи, ', message.left_chat_member.get_mention(as_html=True))
     else:
-        await message.answer(message.left_chat_member.get_mention() + ' был удален ' + message.from_user.get_mention())
+        await message.answer(message.left_chat_member.get_mention(as_html=True) + ' был удален '
+                             + message.from_user.get_mention(as_html=True))

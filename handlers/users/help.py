@@ -11,5 +11,4 @@ async def bot_help(message: types.Message):
             "/send_contact - Написать контакты боту, он их выведет",
             '/menu (/close_menu) - Выведет или закроет меню',
             "Пиши название города на русском или английском языке")
-    
     await message.answer("\n".join(text))
