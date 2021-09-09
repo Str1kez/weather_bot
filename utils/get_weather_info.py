@@ -48,3 +48,10 @@ def put_weather(status: dict):
     wind_info = "Скорость ветра {} м/сек".format(status['wind']['speed'])
     state_info = state.capitalize() + ' ' + get_emoji(status['weather'][0]['main'])
     return "\n".join((city_info, weather_info, wind_info, state_info))
+
+
+def get_weather_from_coords(latitude: float, longitude: float):
+    url = 'https://nominatim.openstreetmap.org/reverse'
+    r = requests.get(url, params={'lat': str(latitude), 'lon': str(longitude), 'format': 'json'})
+    city_json = r.json()
+    return get_weather(city_json['address']['city'])
