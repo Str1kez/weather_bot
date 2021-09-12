@@ -4,7 +4,7 @@ import logging
 import requests
 from aiogram.types import InlineQueryResultPhoto
 
-from data.config import PIXELS_API
+from data.config import PEXELS_API
 
 
 def get_json(city: str, per_page: int):
@@ -16,7 +16,7 @@ def get_json(city: str, per_page: int):
         'per_page': per_page
     }
     r = requests.get('https://api.pexels.com/v1/search',
-                     params=r_params, headers={'Authorization': PIXELS_API})
+                     params=r_params, headers={'Authorization': PEXELS_API})
     return r.json()
 
 

@@ -1,11 +1,8 @@
-import asyncio
-
 from aiogram import types
 from aiogram.types import InlineQueryResultArticle, InputMessageContent, InlineQueryResultPhoto
 
 from loader import dp
 from utils import get_pictures
-from utils.misc import rate_limit
 
 
 # @dp.inline_handler()
