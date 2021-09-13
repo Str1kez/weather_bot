@@ -2,7 +2,7 @@ from aiogram import types
 from aiogram.types import InlineQueryResultArticle, InputMessageContent, InlineQueryResultPhoto
 
 from loader import dp
-from utils import get_pictures
+# from utils import get_pictures
 
 
 # @dp.inline_handler()
