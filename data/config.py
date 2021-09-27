@@ -8,4 +8,6 @@ BOT_TOKEN = env.str("BOT_TOKEN")  # Забираем значение типа s
 ADMINS = env.list("ADMINS")  # Тут у нас будет список из админов
 IP = env.str("IP")  # Тоже str, но для айпи адреса хоста
 WEATHER_API = env.str("WEATHER_API")
+PG_USER = env.str("PG_USER")
+PG_PASSWORD = env.str("PG_PASSWORD")
 # PEXELS_API = env.str('PEXELS_API')

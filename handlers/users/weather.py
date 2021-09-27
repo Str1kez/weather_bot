@@ -5,7 +5,7 @@ from aiogram import types
 # from aiogram.types import InputFile
 
 from utils.get_weather_info import get_weather
-from loader import dp, bot
+from loader import dp, db
 
 
 # хендлит фото
@@ -34,7 +34,13 @@ from loader import dp, bot
 # Эхо хендлер, куда летят текстовые сообщения без указанного состояния
 @dp.message_handler()
 async def bot_weather(message: types.Message):
-    await message.answer(get_weather(message.text))
+    weather = get_weather(message.text)
+    if weather != "Не нашел такого города :(":
+        await db.insert_user(message.from_user.id, weather[1])
+        await message.answer(weather[0])
+        await db.user_reduction(message.from_user.id)
+    else:
+        await message.answer(weather)
     # is_c_mem = await bot.get_chat_member(-1001529367317, message.from_user.id)
     # is_member = not (is_c_mem['status'] == 'left')
     # await message.answer(str(is_member))

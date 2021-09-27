@@ -47,7 +47,7 @@ def put_weather(status: dict):
     weather_info = "На улице {} °C, ощущается как {} °C".format(temp, temp_feels)
     wind_info = "Скорость ветра {} м/сек".format(status['wind']['speed'])
     state_info = state.capitalize() + ' ' + get_emoji(status['weather'][0]['main'])
-    return "\n".join((city_info, weather_info, wind_info, state_info))
+    return "\n".join((city_info, weather_info, wind_info, state_info)), status['name']
 
 
 def get_weather_from_coords(latitude: float, longitude: float):
