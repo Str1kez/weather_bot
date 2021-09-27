@@ -1,7 +1,9 @@
 from aiogram import types
-from aiogram.types import InlineQueryResultArticle, InputMessageContent, InlineQueryResultPhoto
+from aiogram.types import InlineQueryResultPhoto
 
 from loader import dp
+
+
 # from utils import get_pictures
 
 
@@ -14,7 +16,6 @@ from loader import dp
 
 @dp.inline_handler(text='города')
 async def start_required(query: types.InlineQuery):
-    print(query.offset)
     await query.answer(results=[
         InlineQueryResultPhoto(id='Kazan',
                                photo_url='https://planetofhotels.com/guide/sites/default/files/styles/paragraph'
@@ -35,9 +36,9 @@ async def start_required(query: types.InlineQuery):
                                caption='Москва, Красная площадь',
                                description='Красная площадь',
                                photo_url='https://www.planete-energies.com/sites/default/files/styles/'
-                                   'media_full_width_940px/public/thumbnails/image/moscow.jpg?itok=J_vRU4rA',
+                                         'media_full_width_940px/public/thumbnails/image/moscow.jpg?itok=J_vRU4rA',
                                thumb_url='https://www.planete-energies.com/sites/default/files/styles/'
-                                     'media_full_width_940px/public/thumbnails/image/moscow.jpg?itok=J_vRU4rA'),
+                                         'media_full_width_940px/public/thumbnails/image/moscow.jpg?itok=J_vRU4rA')
         # InlineQueryResultArticle(id='Москва', title='Moscow',
         #                          input_message_content=InputMessageContent(message_text='About Moscow'),
         #                          url='https://www.planete-energies.com/sites/default/files/styles/'

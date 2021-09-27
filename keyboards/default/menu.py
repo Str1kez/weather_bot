@@ -7,7 +7,7 @@ menu = ReplyKeyboardMarkup(
             KeyboardButton(text='Moscow'),
         ],
         [
-            KeyboardButton(text='Los-Angeles')
+            KeyboardButton(text='Los Angeles')
         ]
     ],
     resize_keyboard=True

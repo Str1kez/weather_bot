@@ -1,8 +1,8 @@
-import io
+# import io
 
 from aiogram import types
-from aiogram.dispatcher import FSMContext
-from aiogram.types import InputFile
+# from aiogram.dispatcher import FSMContext
+# from aiogram.types import InputFile
 
 from utils.get_weather_info import get_weather
 from loader import dp, bot

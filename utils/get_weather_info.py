@@ -1,6 +1,6 @@
 import requests
 from data.config import WEATHER_API
-from datetime import datetime as dt
+import datetime as dt
 
 
 def get_request(city: str):
@@ -38,7 +38,7 @@ def get_emoji(name: str):
 
 
 def put_weather(status: dict):
-    time = dt.fromtimestamp(status['dt'] + status['timezone'] - 10800)
+    time = dt.datetime.utcfromtimestamp(status['dt']) + dt.timedelta(seconds=status['timezone'])
     time = time.time()
     temp = round(status["main"]["temp"])
     temp_feels = round(status['main']['feels_like'])
