@@ -10,4 +10,7 @@ IP = env.str("IP")  # Тоже str, но для айпи адреса хоста
 WEATHER_API = env.str("WEATHER_API")
 PG_USER = env.str("PG_USER")
 PG_PASSWORD = env.str("PG_PASSWORD")
+PG_HOST = env.str("PG_HOST")
+PG_DB = env.str("PG_DB")
+PG_PORT = env.str("PG_PORT")
 # PEXELS_API = env.str('PEXELS_API')

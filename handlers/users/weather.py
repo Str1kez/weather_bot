@@ -36,9 +36,10 @@ from loader import dp, db
 async def bot_weather(message: types.Message):
     weather = get_weather(message.text)
     if weather != "Не нашел такого города :(":
-        await db.insert_user(message.from_user.id, weather[1])
+        if weather[1] not in await db.select_three_cities(message.from_user.id):
+            await db.insert_user(message.from_user.id, weather[1])
+            await db.user_reduction(message.from_user.id)
         await message.answer(weather[0])
-        await db.user_reduction(message.from_user.id)
     else:
         await message.answer(weather)
     # is_c_mem = await bot.get_chat_member(-1001529367317, message.from_user.id)

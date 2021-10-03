@@ -1,15 +1,18 @@
 import asyncpg
 import asyncio
 
-from data.config import PG_USER, PG_PASSWORD
+from data.config import PG_USER, PG_PASSWORD, PG_DB, PG_HOST, PG_PORT
 
 
 class DataBase:
     def __init__(self, loop: asyncio.AbstractEventLoop):
         self.pool = loop.run_until_complete(
             asyncpg.create_pool(
+                database=PG_DB,
                 user=PG_USER,
-                password=PG_PASSWORD
+                password=PG_PASSWORD,
+                host=PG_HOST,
+                port=PG_PORT
             )
         )
 
@@ -43,7 +46,7 @@ class DataBase:
 
     async def user_reduction(self, id):
         cmd = """
-        DELETE FROM Users WHERE request_id NOT IN 
+        DELETE FROM Users WHERE request_id NOT IN
         (SELECT request_id FROM Users WHERE user_id = $1 ORDER BY request_id DESC LIMIT 3)
         AND user_id = $1
         """
