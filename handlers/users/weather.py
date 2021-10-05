@@ -3,9 +3,9 @@
 from aiogram import types
 # from aiogram.dispatcher import FSMContext
 # from aiogram.types import InputFile
-
+from utils.db_api import select_cities, insert_user, user_reduction
 from utils.get_weather_info import get_weather
-from loader import dp, db
+from loader import dp
 
 
 # хендлит фото
@@ -36,9 +36,9 @@ from loader import dp, db
 async def bot_weather(message: types.Message):
     weather = get_weather(message.text)
     if weather != "Не нашел такого города :(":
-        if weather[1] not in await db.select_three_cities(message.from_user.id):
-            await db.insert_user(message.from_user.id, weather[1])
-            await db.user_reduction(message.from_user.id)
+        if weather[1] not in await select_cities(message.from_user.id):
+            await insert_user(message.from_user.id, weather[1])
+            await user_reduction(message.from_user.id)
         await message.answer(weather[0])
     else:
         await message.answer(weather)

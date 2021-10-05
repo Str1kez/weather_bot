@@ -1,17 +1,21 @@
 async def on_shutdown(*args):
-    await db.drop_user_table()
+    await db.gino.drop_all()
 
 
 async def on_startup(dispatcher):
     import middlewares
     import handlers
+    import filters
     from utils import on_startup_notify, set_default_commands
+    from data.config import PG_URI
 
     # Устанавливаем дефолтные команды
     await set_default_commands(dispatcher)
 
+    await db.set_bind(PG_URI)
     # Создаем таблицу, если нет
-    await db.create_user_table()
+    # await db.create_user_table()
+    await db.gino.create_all()
 
     # Уведомляет про запуск
     await on_startup_notify(dispatcher)
